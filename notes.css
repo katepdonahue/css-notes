@@ -1,0 +1,705 @@
+/* we will use external css. 
+Comments can span multiple lines */
+
+/* This is how you link to an external CSS 
+<link rel="stylesheet" href="css/style.css">
+*/
+@import url(http://fonts.googleapis.com/css?family=Allerta);
+/* CSS Syntax:
+
+selector {
+	property: value;
+	property: value;
+}
+*/
+
+/* Type Selector */
+
+p { /* selects all <p> */
+	font-size: 14px; /* px, put, %, em */
+	line-height: 1em;
+}
+figcaption { /* selects all <figcaption> */
+ 	/*font-weight: normal;
+ 	font-size: 12px;
+ 	line-height: 1.5em;
+ 	font-family: Georgia, "Times New Roman", serif; */
+ 	/* Font Shorthand */
+ 	font: normal 12px/1.5em Georgia, "Times New Roman", serif; /* "Normal, 12 pixels over 1.5 em" */
+ 	color: #777; /* 16 color names, hexadecimal, rgba, digital color meter view--> display values--> as hexadecimal*/
+	text-align: right;
+}
+
+/* Loading your own font:
+go to google.com/webfonts
+select a font, click "Quick use", @import to add font to top of CSS stylesheet
+Copy and past fonts-family into CSS code*/
+
+/* Class Selector (apply to as many elements as you like) e.g. <h2 class="milk_text shadow"></h2> Will display this header with the CSS for the milk_text class and the shadow class*/
+
+.milk_text { /* selects elements with a class="milk_text" */
+	font-family: 'Allerta', sans-serif;
+	color: white;
+	text-shadow: 0 2px 3px #000; /* horizontal offset (positive is right), virtical offset (positive is down), blurr radius (0 is sharp) color*/
+}
+
+/* ID Selector (apply to only one element per page) */
+
+#logo {/* This selects the element with an id="logo" */
+	background: aqua;
+}
+
+/* Descendent Selector */
+
+#logo h1 { /* selects only <h1> inside the elements with id="logo". "h1 is nested in the id, it's the descendent of this parent"*/
+	font-family: 'Allerta', sans-serif;
+}
+
+#logo h2 { /* selects only <h2> elements within this id */
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+section a { /* styling the links in section tags */
+	color: #555;
+	text-decoration: underline; /* default for links, but just showing where you can change this */
+}
+
+/* Pseudo Selector */
+/* Identifier is a colon */
+
+#details a:link { /* selects links during their default state (un-touched) */
+	color: black;
+	text-decoration: none;
+}
+
+#details a:visited {/* select links that have already been clicked. text decoration inherited from unvisited state "link"*/
+	color: #ccc;
+}
+
+#details a:hover {/* select links during mouse over. always style in this order so can inherit.*/
+	color: black;
+	text-decoration: underline;
+}
+
+#details a:active { /* selects links while mouse button is clicking */
+	color: red;
+}
+
+/* If you want them to be the same: */
+
+#nav_bar a:link, #nav_bar a:visited {
+	color: black;
+	text-decoration: none; /* you can change font, style, size, weight, background color etc */
+}
+
+/* Tools:
+in chrome view-->developer-->developer tools
+tinker.io */
+
+/* inline elements: appear side by side, can't take width/height descriptions, margins exist to the left and right of each elt only (no top and bottom) */
+/* block elements: one element per line, take up all of horizontal space */
+/* inline-block: all features of block but appear side by side */  
+.box {
+	background: aqua;
+	width: 100px; 
+	height: 100px;
+	padding: 10px; /* spacing inside the element */
+	margin: 10px; /* spacing outside the element */
+	display: inline-block; /* by default a div appears as a box, but you can change that by adding this line */
+}
+
+/* Box Model */
+/* Box in a Box Method */
+
+div { width: 100px; padding:0; margin: 0; border:0;} /* inner box */
+.i { padding: 1em; }
+
+/* html code 
+<div>
+	<div class="i"> Text </div>
+</div> */
+
+/* Box-sizing Property */
+
+div {
+	box-sizing: border box; /* IE model = border box (100% support) W3C model = content-box 94.3% browser support */
+}
+
+/* Scaling ELements: px (static) or % (fluid) --> changing size in response to device/screen size, threshold (min, max), auto is default width or height */
+
+/* overflow: visible | hidden | scroll | auto; */
+
+.box {
+	background: aqua;
+	width: auto; /* gets as wide as it can, takes up full screen width or...*/
+	width: 50%; /* takes up 50% of available width, fluid--> always 50% if you shrink screen size*/
+	min-width: 200px; /* Comes in min/max pair, fluid within the boundaries, scroll appears when you shrink screen too far*/
+	max-width: 600px;
+	height: auto; /* this is the same as not specifying height. elt will expand based on content inside of it. */
+	border: 1px solid black; /* or dashed instead of solid */
+	padding: 10px; /* spacing inside the element, 0 means content right up aagainst edge of element */
+	padding: 10px 20px; /* short hand for padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px; */
+	padding: 10px 20px 30px; /* shorthand for top, l and r, bottom. four values short hang for t, r, b, l */
+	margin: 10px; /* spacing outside the element, same shorthands as padding, margins can overlap */
+	display: block; 
+	overflow: hidden; /* hides any content that doesn't fit in the box or...*/
+	overflow: auto; /* get a scroll bar in most browsers, some hide scroll bar but can still scroll using mouse */
+}
+
+/* Box Aesthetics ( | means or) */
+/* backgroup properties*/
+.box {
+	background-color: black | #fff | rgba(0,0,0,1);
+	background-image: url(myimage.jpg);
+	background-position: top left;
+	background-repeat: repeat | repeat-x | repeat-y | no-repeat; /* repeat x is horizontal, y vertical */
+	background-scroll: fixed | scroll;
+	background-size: 100% | 1px | contain | cover; /* 100% image scales with window size */
+	background: white url(myimage.jpg) no-repeat; /* shourthand for all above lines in one line */
+}
+
+/* border properties */
+.box {
+	border-size: 1% | 1px;
+	border-color: blue | #00f | rgba(0,0,255,1);
+	border-style: solid | dashed | dotted | double | groove | ridge | inset | outset;
+	border: 1px solid #000; /* border shorthand */
+}
+
+/* border radius: rounding corners on your borders */
+.box {
+	border-radius: 20px;
+	border-top-left-radius: 50px; /* even rounding on both axes */
+	border-top-left-radius: 50px 100px; /* change the way it rounds, first value is top, second is left */
+
+
+	-webkit-border-radius: 20px; /* used to have to add a bunch of tags but eventually we won't need any as browsers update */
+}
+
+/* box shadow*/
+.box {
+	box-shadow: 5px 5px 5px #888; /* horizontal offset pos to the right, vertical offset pos down, blurr radius 0 is sharp edge, color */
+
+	-webkit-box-shadow: 5px 5px 5px #888;
+	-moz-box-shadow: 5px 5px 5px #888;
+}
+
+/* opacity */
+.box {
+	filter: alpha(opacity=50); /* IE */
+
+	-moz-opacity: 0.5; /* older than firefox 0.9 */
+	-khtml-opacity: 0.5; /* Safari 1.x (pre WebKit!) */
+
+	opacity: 0.5; /* Modern! (0.5 is 50% opacity) */
+}
+
+/* gradient */
+.box {
+	background-color: #f47a20; /* will default to this color for older browsers */
+	background-image: -moz-linear-gradient(#f47a20, #faa51a);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%); /* radio gradinet or linear gradient */
+		color-stop:(0, #f47a20);
+		color-stop:(1.#faa51a);
+}
+
+/* Floating*/
+#sidebar {
+	float: left;
+}
+
+#main {
+	float: right;
+}
+
+/* elements that are below things that are floating try to pull up next to it if it can fit */
+/* preventing this */
+footer {
+	clear: both; /* or clear: left; (clear past height of things floating left), or clear: right; */
+}
+
+/* collapsed parents fix with clear fix (apply this to the div that is the parent) */
+.clearfix:after { /* whatever elt we apply this class to, will go inside and apply this style after all of the children */
+	content: "."; /* don't usually want to use css for content (that's what html is for) this will add a period after each floating child */
+	display: black; /* period symbol is a block item now so it takes up all horizontal space */
+	clear: both; /* moves period past the height of all the floating children (pushes period symbol down past oll floating children) */
+	visibility: hidden; /* hid the period */
+	height: 0; /* so the period doesn't take up any height */
+	line-height: 0;
+}
+
+/* adding borders and padding using percents: making chrome use IE system of including padding and border in width; */
+. {
+	border-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+/* wrapper: html <div class="wrapper"> around all boxes (including above and below sections) to center all content */
+.wrapper {
+	width: 800px;
+	margin: 0 auto; /* zero refers to top and bottom, auto is for the sides */
+}
+
+/* What he adds to his website "Applying box properties" */
+
+body {
+	background: url (../images/handmadepaper.png);
+}
+
+h2, h3 {
+	margin-bottom: 5px; /* made headers closer to paragraphs */
+}
+
+ul, ol {
+	margin-bottom: 10px;
+}
+
+li {
+	margin-left: 20px;
+}
+
+p, address {
+	margin: 0 0 25px; /* margin is on the bottom */
+	font-size: 14px;
+}
+
+figure {
+	margin: 0 0 10px; /* margin is on the bottom, surrounding images and video */
+
+}
+
+/* What he adds to his site "Styling tables" */
+
+table {
+	width: 100%;
+	margin: 0 0 20px;
+	border-top: 1px solid #ccc; /* medium gray hex code */
+	border-left: 1px solid #ccc;
+}
+
+tr { /* table row */ 
+	background: white; /* actually unnecessary because will inherit white color */
+}
+
+tr:nth-child(even) { /* selects even numbered table rows */
+	background: #efefef; /* light gray */
+
+}
+
+th, td { /* table header, table ?? first column */
+	padding: 10px;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+th {
+	background: #555;
+	color: white; /* text color */
+}
+
+/* What he adds to his website "Styling Forms" */
+
+input, textarea { /* form fields appear one on top of another */
+	display: block;
+	width: 100%; /* fluid width */
+	padding: 5px;
+	margin-bottom: 5px;
+	box-shadow: 0 3px 5px #ccc; /* horizontal offset, vertical offset, blur radius, shadow color*/
+	border: 1px solid #ccc;
+}
+
+input [type="submit"] { /* set style to specifically select send button, since type is "select" can use "attribut selector" */
+	margin-top: 5px;
+	width: 100px;
+	background: black;
+	color: white;
+	border-radius: 25px;
+	border: 0; /* need to remove because buttons have a border by default */
+}
+
+input [type="submit"]:hover { /* to change the color when we hover over send button */
+	background: #555;
+}
+
+/* What he adds "Styling iframe" */
+
+iframe {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	overflow: hidden; /* so that no sidebars appear */
+	height: 353px; /* too get height to be similar to height of form */
+}
+
+/* What he adds "Centering Content" using wrapper class*/
+
+.wrapper {
+	width: 960px;
+	margin: 0 auto; /* top and bottom, L and R */
+}
+
+/* What he adds "Applying Box Shadow" */
+
+.shadow {
+	box-shadow: 0 3px 10px #333; /* very dark gray color */
+}
+
+/* What he adds "Applying Gradients" */
+
+#logo {
+	padding: 85px 0 25px;
+	/* gradient: use css3 gradient generator online like colorzilla.com/gradient-editor; */
+	/* copy and paste code */
+}
+
+/* What he adds "Styling the logo" */
+
+	#logo h1 {
+		margin: 0;
+		padding-top: 20px;
+		display: inline-block;
+		font-family: 'Clicker Script', cursive;
+		background: url(../images/logo_crown_emboss.png) no-repeat top center; /* background shorthand */
+	}
+
+	#logo h2 {
+		margin: 0;
+		display: inline-block;
+		font-family: 'Elsie Swash Caps', cursive;
+	}
+
+/* What he adds "Styling Main Sections" */
+
+#wood {
+	background-image: url(../images/wood.jpg), url(../images/wood_slice.jpg);
+	background-position: center top, left top; /* first image, second immage */
+	background-repeat: no-repeat, repeat-y; /* first image, second image */
+	padding: 30px 0; /* top bottom, L R */
+}
+
+section {
+	padding: 20px;
+	background-color: white;
+}
+
+/* What he adds "Styling Details Section" */
+
+#details {
+	padding: 20px 10px;
+	/* gradient */
+	/* copy and paste in */
+}
+
+/* What he adds "Creating Column Structure" using float positioning*/
+
+/* name classes col1 if stretch across 1 column, col2, col3 */
+.col1_left {
+	float: left;
+	width: 32.6%; /* want space inbetween columns for margin, want 1% margins */
+	margin: 0 0 20px; /* no top, no L R, yes bottom */
+}
+
+.col1_mid {
+	float: left;
+	width: 32.6%;
+	margin: 0 1% 20px 1%;
+}
+
+.col1_right {
+	float: right;
+	width: 32.6%;
+	margin: 0 0 20px;
+}
+
+.col2_left {
+	float: left;
+	width: 66.4%; /* only need one 1% margin */
+	margin: 0 1% 20px 0;
+}
+
+.col2_right {
+	float: right;
+	width: 66.4%;
+	margin: 0 0 20px 1%;
+}
+
+.col3 {
+	margin: 0 0 20px;
+}
+
+/* use col2_left on artists corner, col1_right on company news section
+now we have a problem with the details section pulling up behind the artists corner 
+let's fix this */
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+/* set details section to clear: both; */
+
+/* now the background isn't working behind these two floating elements (parent is collapsing)
+let's fix this (need to use that collapsing parent fix */
+
+.clearfix:after { /* apply this to the div with the id="wood" */
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+	line-height: 0;
+}
+
+/* turn the three divs at the bottom into a column structure using class="col1..." 
+add class="clearfix" into div id="details" */
+
+/* add border around boxes in details section */
+
+.border_right { /* only add to two central ones because it's a right border */
+	border-right: 1px dotted #ccc;
+	padding-right: 20px;
+}
+
+/* Developer Tools (part 2) */
+/* checking availbable content area in the horizontal
+collapse styles panel, open metrics
+
+/* Positioning and Sprites */
+/* Advanced Positioning Techniques: Relative, Absolute, Fixed */
+
+.rel { /* tell the browser which side to push on, repositon relative to where it was before */
+	position: relative;
+	top: 50px; /* push on the top of the elt and push it down 50px */
+	top: -50px; /* pull up 50px */
+	right: 10px;
+}
+
+.abs {
+	position: absolute; /* elts relationship to browser window, in this case, parent has collapsed */
+	top: 10px; /* 10px from the viewable top of the screen */
+	right: 10px; /* 10px from right side of viewable screen */
+} /* but when the parent has class .rel, child will be relatively positioned to parent (10px from top right corner of parent) */
+
+.fix { /* still in relationship to entire viewable area, but when the browser window scrolls, elt remains viewable, fiked in screen */
+	position: fixed;
+	top: 140px;
+}
+
+/* Z-Index Layering: control overlapping of elements when browser window shrinks */
+
+.z1 {
+	z-index: 1; /* by default z-index is zero, negative numbers will fall behind normally positioned static elements, higher z-index number goes above elts */
+	background-color: aqua;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.z2 {
+	z-index: 2; /* higher z-index number goes above lower z-index elts */
+	background-color: lime;
+	position: relative;
+	top: -50px;
+	left: 30px;
+}
+
+/* Sprite Rollovers: take multiple images and tile them together into a single image */
+/* This speeds up loading time */
+
+a {
+	display: block;
+	background: url(sprite.png) no-repeat;
+	height: 30px;
+	width: 250px;
+}
+
+a:hover {
+	background-position: 0 -30px; /* horizontal position, vertical position */
+}
+
+/* What he adds: Styling Navagation */
+
+#nav_bar {
+	position: fixed; /* nav bar will remain viewable at the top of the page even as you scroll */
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+	background: url(../images/header-fade.gif) repeat-x; /* older technique for getting gradient to appear, it's a this sliver that fades from light to darker gray, loads very quickly because so small */
+	border-bottom: 1px solid #ccc;
+}
+
+	#nav_bar nav {
+		border-left: 1px solid #ccc;
+	}
+
+		#nav_bar nav a { /* inside id="nav-bar" find nav elts and style links in nav elts */
+			display: inline-block;
+			width: 20%;
+			margin: 0;
+			padding: 22px 0;
+			text-transform: uppercase;
+			color: black; /* text color */
+			text-align: center;
+			border-right: 1px solid #ccc;
+			text-decoration: none;
+			font: 20px "Trebuchet MS", Arial, sans-serif;
+		}
+
+		#nav_bar a.selected { /* add this class to each page so that this is what the button looks like while you are on the page e.g. when your in catalog the catalog button in the header looks like this */
+			background: black;
+			color: white;
+		}
+
+		#nav_bar nav a:hover {
+			color: white;
+			/* gradient */
+			/* copy and paste in from gradient editor */
+		}
+
+/* What he adds: Styling the Social Media Bar, each icon is 40px square */
+/* create div in html <div id="social">
+							<a class="fbook" href="#" target="_blank" title="facebook">Facebook</a>
+							<a class="twitt" href="#" target="_blank" title="twitter">Twitter</a>
+							<a class="gplus" href="#" target="_blank" title="googleplus">Google Plus</a> */
+
+#social {
+	position: fixed;
+	top: 200px;
+	right: 3px;
+	width: 40px;
+	z-index: 1;
+}
+
+	a.fbook, a.twitt, a.gplus {
+		display: block;
+		width: 40px;
+		height: 40px;
+		text-indent: 100px;
+		white-space: nowrap;
+		overflow: hidden;
+		background: url(../images/social-icons.png) no-repeat;
+	}
+
+	a.fbook { background-position: 0 0; }
+	a.fbook:hover { background-position: -40px 0; } /* moves images horizontally to the left 40px */
+	a.fbook:active { background-position: -80px 0; }
+
+	a.twitt { background-position: -40px 0; }
+	a.twitt:hover { background-position: -40px -40px; } /* moves images horizontally to the left 40px and vert down by 40px */
+	a.twitt:active { background-position: -80px -40px; }
+
+	a.gplus { background-position: -40px 80; }
+	a.gplus:hover { background-position: -40px -80px; } /* moves images horizontally to the left 40px and vert down by 40px */
+	a.gplus:active { background-position: -80px -80px; }
+
+/* fix iframe issue by changing width to 100% */
+
+/* Responsive Layout */
+/* Techniques: Modern Responsive Layout Techniques, CSS3 Media Queries, Meta Device Width, JavaScript Fixes */
+
+/* Responsive Layout */
+/* you can build seperate sites for different platforms, or create single site and just alter CSS3 Media, which is what we're gonna do */
+
+/* Layout Changes: hidding content, making everything more fluid, floating columns to float: none; width: 100%; to change to single column structure */
+/* Fluid images, media files, change text sizes */
+@media only screen and (max-width: 768px) {
+	header nav a {
+		font-size: 0.8em;
+		/* etc. all smaller size CSS in here */
+	}
+}
+/* Evaluate a device's dimensions and set or change styles when the size matches */
+/* in html:
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"> */
+/* this prevents device from zooming out or in and instead rely on the media query styling to change the layout accrdingly */
+
+/* JS fixes: iOS Orientation Zoom Fix is a JS file that corrects a zoom bug on Apple Devices when switch view from vert to horizontal
+<script scr="https://raw.github.com/Wilto/iOS-Orientationchange-Fix/master/ios-orientationchange-fix.js"></script> */
+/* Media Queries Fix for older versions of IE
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script> */
+
+/* Setting Up Local Responsive Testing */
+/* quirktools.com/screenfly will need an actual web address, or you can install a testing server on your computer using MAMP for macs WAMP for windows, set folder in settings and put site in that folder to view using url begging with http//:localhost... */
+/* or you can just change the size of your screen on you regular browser */
+
+/* Prep HTML for Responsive Layout
+<head>
+	...
+	<meta name="viewport" content="width=device-width", initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	disables zooming on all devices
+	google search "iOS orientation change fix" and paste this into html
+	<script src="https:https://raw.github.com/Wilto/ios-orientationchange-fix.js"></script>
+	you can also go to the url, download the js so it can be on your local server just in case.
+	if less than IE 9 (this goes in that if statement)
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+
+	link to new style sheet device-styles.css
+	<link rel="stylesheet" href="cess/device-styles.css">
+</head> */
+
+/* Skipped Applying CSS3 Media Queriesm */
+
+/* Applying PHP Mailer Script */
+/* Add verification_images.php which you can just use from the files he gave us. It generates a random number and builds an image file using PHP */
+/* Add mailer.php, just change the top part of this code to change it to send to your email, and change the subject line */
+/* To get the verification image to work, update html:
+	<input type="text" name="verify" class="verif_box" placehorlder="verify you're human" required>
+	<img class="verif_img" src="verificationimage.php? <?php echo rand(0,9999);?>" alt="verification image">
+and in css... */
+
+input.verify_box {
+	display: inline-block;
+	width: 80%;
+	margin-right: 5px;
+}
+
+img.verif_img {
+	width: 50px;
+	height: 30px;
+	vertical-align: bottom;
+}
+
+/* add into form <form ... action="mailer.php"...> */
+
+/* Resets Grid Systems and Templaets */
+/* CSS reset: need to download a css reset, we've been using normalize.css.
+This removes default settings imposed by any browser. 
+We can get consistency across browsers by removing defaults and creating our own.
+In your html file, link to reset and then your own style sheet.
+Popular CSS Resets: Meyers, Toucan, YUI, Poor-man's (you can quickly write this out yourself) */
+
+/* Poor man's */
+
+* , html, body { padding: 0; margin: 0; }
+html { font-size: 1em }
+body { font-size: 100% }
+a img, a:link img, a:visited img { border: 0; }
+
+/* Best to just download one of the full formed ones */
+/* Normalize is similar to a reset but it does add some style to get you started */
+
+/* CSS Grid Systems */
+/* We created our own using classes col1, col2, col3 etc. but you can download css grid systmes online, prewritten code.
+960 grid system is a popular one. Has total of 12 column posibilities.
+Others:
+960
+Blueprint
+SenCss
+The Semantic Grid System
+Twitter Bootstrap (grid included)
+	they all have different class names that they expect you to use correctly */
+
+/* HTML5 Frameworks
+html5boilerplate.com html5boilerplate.com/mobile */
+
+
+
+
+
+
+
